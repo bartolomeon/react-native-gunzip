@@ -2,17 +2,22 @@
 {
   "name": "react-native-gunzip",
   "version": "1.0.0",
-  "description": "",
+  "description": "Single file GZIP decompression (without TAR) for React Native",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "react-component",
+    "android",
+    "ios",
+    "gzip",
+    "gunzip"
   ],
-  "author": "",
-  "license": "",
+  "author": "Bartłomiej Nićka",
+  "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": "*"
   }
 }
