@@ -16,6 +16,7 @@ import java.util.zip.ZipException;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 
 public class RNGunzipModule extends ReactContextBaseJavaModule {
@@ -45,12 +46,8 @@ public class RNGunzipModule extends ReactContextBaseJavaModule {
       if (!force) {
         promise.reject("-2", "destination file already exists - use force option to overwrite");
         return;
-      }
-
-      try {
+      } else {
         destFile.delete();
-      } catch (IOException ex) {
-        promise.reject("-2", "could not delete old destination file", ex);
       }
     }
 
@@ -63,11 +60,12 @@ public class RNGunzipModule extends ReactContextBaseJavaModule {
       map.putString("path", destFile.getAbsolutePath());
       promise.resolve(map);
 
-    } catch (IOException e) {
-      promise.reject("-2", e);
     } catch (ZipException e) {
       promise.reject("-2", "unable to open archive", e);
     } catch ( IllegalArgumentException e) {
       promise.reject("-2", "empty input file", e);
+    } catch (IOException e) {
+      promise.reject("-2", e);
     }
   }
+}
