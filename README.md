@@ -12,7 +12,7 @@
 ### Manual installation
 
 
-#### iOS
+#### iOS (NOTE: iOS part is not yet implemented)
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-gunzip` and add `RNGunzip.xcodeproj`
@@ -37,9 +37,13 @@
 
 ## Usage
 ```javascript
-import RNGunzip from 'react-native-gunzip';
+import RNGunzip from 'react-native-gunzip'
 
-// TODO: What to do with the module?
-RNGunzip;
+//won't overwrite destination (results in error):
+RNGunzip.gunzip(sourceFilePath, destinationFilePath)
+
+//overwrites the destination file if exists:
+RNGunzip.gunzip(sourceFilePath, destinationFilePath, true)
+
 ```
   
