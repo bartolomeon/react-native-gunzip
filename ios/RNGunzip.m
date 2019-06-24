@@ -16,6 +16,8 @@ RCT_REMAP_METHOD(gunzip,
                  resolver: (RCTPromiseResolveBlock)resolve
                  rejecter: (RCTPromiseRejectBlock)reject)
 {
+    
+    
     NSFileManager *manager = [NSFileManager defaultManager];
 
     if (![manager fileExistsAtPath:source]) {
@@ -25,7 +27,7 @@ RCT_REMAP_METHOD(gunzip,
 
     if ([manager fileExistsAtPath:folder]) {
         if (!force) {
-            reject(@"-2", @"folder exists", nil);
+            reject(@"-2", @"file/folder already exists", nil);
             return;
         }
         NSError *unlinkError;
@@ -35,10 +37,9 @@ RCT_REMAP_METHOD(gunzip,
         }
     }
 
-    // TODO Passing an error here results in EXC_BAD_ACCESS because the error is released
-    if (![DCTar decompressData:[manager contentsAtPath:source] toPath:folder error:nil]) {
-        reject(@"-3", @"error while decompressing", nil);
-        return;
+    if (![DCTar gzipDecompress:source toPath:folder error:nil]) {
+      reject(@"-3", @"error while decompressing", nil);
+       return;
     }
 
     resolve(@{@"path": folder});
