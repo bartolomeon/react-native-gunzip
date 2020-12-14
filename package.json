@@ -2,6 +2,7 @@
 {
   "name": "react-native-gunzip",
   "version": "1.0.0",
+  "homepage": "https://github.com/bartolomeon/react-native-gunzip",
   "description": "Single file GZIP decompression (without TAR) for React Native",
   "main": "index.js",
   "scripts": {
